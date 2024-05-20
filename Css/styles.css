@@ -35,6 +35,26 @@ body {
     box-sizing: border-box;
 }
 
+/* Estilo para la clase loginButton */
+.loginButton {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: #0265d6; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espacio interior */
+    border: none; /* Sin borde */
+    border-radius: 2em; /* Borde redondeado */
+    cursor: pointer; /* Cursor de puntero al pasar sobre él */
+    font-size: 16px; /* Tamaño del texto */
+}
+
+/* Cambiar el estilo cuando el cursor pasa sobre el botón */
+.loginButton:hover {
+    background-color: #0847bb;
+}
+
 /* Personalizar la posición de los botones de zoom */
 .leaflet-bottom.leaflet-right {
     right: 10px;
