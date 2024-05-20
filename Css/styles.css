@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#map {
+    width: 100%;
+    height: 100vh;
+}
+
+.panel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.panel input {
+    width: 200px;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+.panel button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+/* Personalizar la posición de los botones de zoom */
+.leaflet-bottom.leaflet-right {
+    right: 10px;
+    bottom: 10px;
+}
+
+/*Icono de localizacion de usuario */
+.user-location-icon {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.outer-circle {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgb(81, 143, 236); /* Blue border */
+    border-radius: 50%;
+    position: relative;
+}
+.inner-circle {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(24, 111, 243); /* Blue circle */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
