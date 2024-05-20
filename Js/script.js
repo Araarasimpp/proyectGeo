@@ -1,4 +1,3 @@
-// main.js
 var map = L.map('map').setView([3.42158, -76.5205], 13); // Cambia a la ubicación inicial deseada
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
