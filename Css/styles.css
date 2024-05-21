@@ -15,14 +15,14 @@ body {
     left: 10px;
     background: white;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     z-index: 1000;
 }
 
 .panel input {
     width: 200px;
-    padding: 8px;
+    padding: 10px;
     margin: 5px 0;
     box-sizing: border-box;
 }
@@ -55,31 +55,68 @@ body {
     background-color: #0847bb;
 }
 
-/* Estilo para el botón de ubicación actual */
 .ubiButton {
-    position: absolute;
-    top: 590px; /* Ajusta la posición vertical según sea necesario */
-    right: 10px; /* Ajusta la posición horizontal según sea necesario */
-    z-index: 1000;
-    background-color: #fff;
-    border: none;
-    border-radius: 50%;
-    padding: 10px;
-    margin: 5px;
+    position: absolute; /* Posiciona el botón de manera absoluta */
+    right: 10px; /* Alineado con los controles de zoom */
+    bottom: 130px; /* Ajusta esta posición para estar justo encima del control de zoom */
+    width: 50px; /* Tamaño del botón */
+    height: 50px;
+    background-color: white; /* Fondo blanco */
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Borde similar a los controles de zoom */
+    border-radius: 50%; /* Hacer el botón circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para darle un poco de profundidad */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
 }
 
-/* Estilo para la imagen de icono de ubicación */
+.ubiButton:hover {
+    background-color: #f4f4f4;
+}
+
 .ubiButton img {
-    width: 25px; /* Ajusta el tamaño del icono según sea necesario */
-    height: 25px;
+    width: 20px; /* Ajusta el tamaño del icono según sea necesario */
+    height: 20px;
+    vertical-align: middle; /* Alinea verticalmente la imagen en el centro */
 }
 
-/* Personalizar la posición de los botones de zoom */
-.leaflet-bottom.leaflet-right {
+.leaflet-control-zoom-custom {
+    position: absolute;
     right: 10px;
-    bottom: 10px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4em;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.leaflet-control-zoom-custom button {
+    background: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+    line-height: 1;
+    outline: none;
+}
+
+.leaflet-control-zoom-custom button:hover {
+    background: #f4f4f4;
+}
+
+.leaflet-control-zoom-custom .zoom-in {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 /*Icono de localizacion de usuario */
@@ -89,11 +126,12 @@ body {
     text-align: center;
 }
 .outer-circle {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgb(81, 143, 236); /* Blue border */
+    width: 10px;
+    height: 10px;
+    border: 2px solid rgb(255, 255, 255); /* Blue border */
     border-radius: 50%;
     position: relative;
+    box-shadow: 0 0 15px 21px rgba(81, 143, 236, 0.5); /* Difuminado */
 }
 .inner-circle {
     width: 10px;

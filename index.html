@@ -10,15 +10,18 @@
 <body>
     <div id="map"></div>
     <div class="panel">
-        <label for="start">Selecciona el punto de salida:</label>
-        <input type="text" id="start" placeholder="Punto de salida">
-        <label for="end">Selecciona el destino:</label>
-        <input type="text" id="end" placeholder="Destino">
-        <button onclick="calculateRoute()">Salir ahora</button>
+        <input type="text" id="start" placeholder="Selecciona el punto de salida:"><hr>
+        <input type="text" id="end" placeholder="Selecciona el destino:">
     </div>
     <button class="loginButton" onclick="login()">Iniciar Sesión</button>
-    <button class="ubiButton" onclick="getLocation()"><img src="src/ubicacion-icono.svg" alt="Ubicación"></button> <!-- Botón de ubicación actual con clase -->
-    
+    <button class="ubiButton" onclick="getLocation()">
+        <img src="src/ubicacion-icono.svg" alt="Ubicación">
+    </button>
+    <div class="leaflet-control-zoom-custom">
+        <button class="zoom-in" onclick="map.zoomIn()">+</button>
+        <button class="zoom-out" onclick="map.zoomOut()">-</button>
+    </div>
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="Js/script.js"></script>
 </body>

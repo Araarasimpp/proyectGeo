@@ -10,11 +10,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// Añadir controles de zoom personalizados en la parte inferior derecha
-L.control.zoom({
-    position: 'bottomright'
-}).addTo(map);
-
 // Intentar obtener la ubicación actual del usuario y centrar el mapa
 getLocation();
 
@@ -52,6 +47,7 @@ function showPosition(position) {
 
     map.setView([lat, lon], 13);
 }
+
 
 // Manejar errores de geolocalización
 function showError(error) {
