@@ -16,23 +16,72 @@ body {
     background: white;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px rgba(0,0,0, .3);
     z-index: 1000;
 }
 
 .panel input {
-    width: 200px;
+    width: 350px;
     padding: 10px;
     margin: 5px 0;
     box-sizing: border-box;
 }
 
-.panel button {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
-    box-sizing: border-box;
+.titlebox{
+    margin: 0;
+    padding: 10px 5px;
+    height: auto;
+    font: var(--title-font-boing-500);
+    font-size: 18px;
+    color: #202124;
+    letter-spacing: .3;
+    line-height: 18px;
+    background: #fff;
+    border-radius: 10px 10px 0 0;
+}
+
+.titlebox{
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 24px minmax(0, 1fr) 24px;
+  align-items: flex-start;
+  justify-items: center;
+  margin: 15px 15px 0;
+  font-size: 16px;
+  line-height: 26px;
+  height: var(--routing-title-height);
+  color: var(--routing-title-color);
+  transition-duration: var(--routing-title-duration);
+  transition-property: height, color;
+}
+
+.hamburger-menu {
+    border: 0;
+    padding: 0;
+    font-size: 24px;
+    transition: margin-top .2s;
+    margin-top: 0;
+    background: none;
+    border: none; /* Elimina cualquier borde */
+    outline: none; /* Elimina el contorno */
+}
+
+.icon {
+    width: 25px; /* Ajusta el tamaño del icono según sea necesario */
+    height: 25px;
+    cursor: pointer;
+    line-height: 1;
+    display: inline-block; /* Hace que el icono no tenga una caja */
+    vertical-align: middle; /* Alinea verticalmente el icono */
+}
+
+.subicon {
+    width: 20px; /* Ajusta el tamaño del icono según sea necesario */
+    height: 20px;
+    line-height: 1;
+    padding: 20px 20px;
+    display: inline-block; /* Hace que el icono no tenga una caja */
+    vertical-align: middle; /* Alinea verticalmente el icono */
 }
 
 /* Estilo para la clase loginButton */
@@ -105,7 +154,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 30px;
     color: #333;
     line-height: 1;
     outline: none;

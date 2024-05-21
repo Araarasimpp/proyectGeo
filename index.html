@@ -8,11 +8,26 @@
     <link rel="stylesheet" href="Css/styles.css" />
 </head>
 <body>
-    <div id="map"></div>
-    <div class="panel">
-        <input type="text" id="start" placeholder="Selecciona el punto de salida:"><hr>
+<div id="map"></div>
+<div class="panel">
+    <div class="titlebox">
+        <button class="hamburger-menu">
+            <img src="src/ui.svg" alt="" class="icon">
+        </button>
+        Indicaciones para llegar 
+    </div>
+
+    <div class="">
+        <img src="src/point.svg" alt="" class="subicon">
+        <input type="text" id="start" placeholder="Selecciona el punto de salida:">
+    </div>
+        
+    <div class="">
+        <img src="src/ubicacion.svg" alt="" class="subicon">
         <input type="text" id="end" placeholder="Selecciona el destino:">
     </div>
+</div>
+
     <button class="loginButton" onclick="login()">Iniciar Sesión</button>
     <button class="ubiButton" onclick="getLocation()">
         <img src="src/ubicacion-icono.svg" alt="Ubicación">
