@@ -55,6 +55,27 @@ body {
     background-color: #0847bb;
 }
 
+/* Estilo para el botón de ubicación actual */
+.ubiButton {
+    position: absolute;
+    top: 590px; /* Ajusta la posición vertical según sea necesario */
+    right: 10px; /* Ajusta la posición horizontal según sea necesario */
+    z-index: 1000;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para la imagen de icono de ubicación */
+.ubiButton img {
+    width: 25px; /* Ajusta el tamaño del icono según sea necesario */
+    height: 25px;
+}
+
 /* Personalizar la posición de los botones de zoom */
 .leaflet-bottom.leaflet-right {
     right: 10px;
