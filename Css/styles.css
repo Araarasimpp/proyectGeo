@@ -1,3 +1,4 @@
+/* CSS code remains the same */
 body {
     margin: 0;
     padding: 0;
@@ -180,7 +181,7 @@ body {
     border: 2px solid rgb(255, 255, 255); /* Blue border */
     border-radius: 50%;
     position: relative;
-    box-shadow: 0 0 15px 21px rgba(81, 143, 236, 0.5); /* Difuminado */
+    box-shadow: 0 0 5px 5px rgba(104, 164, 255, 0.5); /* Difuminado */
 }
 .inner-circle {
     width: 10px;

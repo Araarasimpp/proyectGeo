@@ -10,6 +10,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+// Variable para almacenar el marcador de la ubicación del usuario
+var userMarker;
+
 // Intentar obtener la ubicación actual del usuario y centrar el mapa
 getLocation();
 
@@ -40,14 +43,17 @@ function showPosition(position) {
         html: '<div class="outer-circle"><div class="inner-circle"></div></div>'
     });
 
+    // Remover el marcador anterior si existe
+    if (userMarker) {
+        map.removeLayer(userMarker);
+    }
+
     // Add marker for user's location
-    var userMarker = L.marker([lat, lon], { icon: userIcon }).addTo(map);
-    userMarker
-    .openPopup();
+    userMarker = L.marker([lat, lon], { icon: userIcon }).addTo(map);
+    userMarker.openPopup();
 
     map.setView([lat, lon], 13);
 }
-
 
 // Manejar errores de geolocalización
 function showError(error) {
