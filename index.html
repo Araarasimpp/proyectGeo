@@ -6,6 +6,7 @@
     <title>Mapa Interactivo con Leaflet</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="Css/styles.css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 <body>
 <div id="map"></div>
@@ -26,12 +27,14 @@
         <img src="src/ubicacion.svg" alt="" class="subicon">
         <input type="text" id="end" placeholder="Selecciona el destino:">
     </div>
+
 </div>
 
-    <button class="loginButton" onclick="openModal()">¿Eres conductor?</button>
+    <button class="loginButton" id="form-open">¿Eres conductor?</button>
     <button class="ubiButton" onclick="getLocation()">
         <img src="src/ubicacion-icono.svg" alt="Ubicación">
     </button>
+
     <div class="leaflet-control-zoom-custom">
         <button class="zoom-in" onclick="map.zoomIn()">+</button>
         <button class="zoom-out" onclick="map.zoomOut()">-</button>
