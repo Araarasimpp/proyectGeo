@@ -73,6 +73,7 @@ function showError(error) {
     }
 }
 
+//Login
 const modal = document.querySelector('.modal');
 const loginLink = document.querySelector('.login-link');
 const registerLink = document.querySelector('.register-link');
