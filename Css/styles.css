@@ -113,7 +113,7 @@ body {
     position: relative;
     width: 400px;
     height: 440px;
-    background: transparent;
+    background: #fff;
     border: 2px solid rgba(225, 225, 225, .5);
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
@@ -123,6 +123,7 @@ body {
     overflow: hidden;
     transform: scale(0);
     transition: transform .5s ease, height .2s ease;
+    z-index: 1000;
 }
 
 .modal.activate-popup{
