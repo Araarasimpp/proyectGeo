@@ -6,10 +6,83 @@
     <title>Mapa Interactivo con Leaflet</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="Css/styles.css" />
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 <body>
-<div id="map"></div>
+<div id="map"> 
+    <div class="modal">
+
+        <span class="close-icon">
+            <ion-icon name="close"></ion-icon>
+        </span>
+
+        <div class="form-box login">
+            <h2>Login</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon">
+                            <ion-icon name="mail"></ion-icon>
+                        </span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <ion-icon name="lock"></ion-icon>
+                        </span>
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label>
+                            <input type="checkbox">remember me?
+                        </label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <div class="login-register">
+                        <p>Dont have an account?<a href="#" class="register-link">Register</a></p>
+                    </div>
+                </form>
+        </div>
+
+        <div class="form-box register">
+            <h2>Registration</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon">
+                            <ion-icon name="person"></ion-icon>
+                        </span>
+                        <input type="text" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <ion-icon name="mail"></ion-icon>
+                        </span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <ion-icon name="lock"></ion-icon>
+                        </span>
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label>
+                            <input type="checkbox">I agree to the terms & conditions
+                        </label>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                    <div class="login-register">
+                        <p>Already have an account?<a href="#" class="login-link">Login</a></p>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+
 <div class="panel">
     <div class="titlebox">
         <button class="hamburger-menu">
@@ -30,7 +103,8 @@
 
 </div>
 
-    <a href="login.html"><button class="loginButton">¿Eres conductor?</button></a>
+    <button class="btnLogin-popup">¿Eres conductor?</button>
+
     <button class="ubiButton" onclick="getLocation()">
         <img src="src/ubicacion-icono.svg" alt="Ubicación">
     </button>
@@ -40,7 +114,10 @@
         <button class="zoom-out" onclick="map.zoomOut()">-</button>
     </div>
 
+    
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="Js/script.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
 </html>

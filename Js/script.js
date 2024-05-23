@@ -72,3 +72,25 @@ function showError(error) {
             break;
     }
 }
+
+const modal = document.querySelector('.modal');
+const loginLink = document.querySelector('.login-link');
+const registerLink = document.querySelector('.register-link');
+const btnPopup = document.querySelector('.btnLogin-popup');
+const closeIcon = document.querySelector('.close-icon');
+
+registerLink.addEventListener('click', ()=> {
+    modal.classList.add('activate');
+});
+
+loginLink.addEventListener('click', ()=> {
+    modal.classList.remove('activate');
+});
+
+btnPopup.addEventListener('click', ()=> {
+    modal.classList.add('activate-popup');
+});
+
+closeIcon.addEventListener('click', ()=> {
+    modal.classList.remove('activate-popup');
+});
