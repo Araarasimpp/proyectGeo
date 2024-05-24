@@ -145,6 +145,7 @@
 }
 
 .modal .form-box.login{
+    display: block;
     transition: transform .18s ease;
     transform: translateX(0);
 }
