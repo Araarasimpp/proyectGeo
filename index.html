@@ -21,7 +21,7 @@
                     <span class="icon">
                         <ion-icon name="mail"></ion-icon>
                     </span>
-                    <input type="text" id="username" required />
+                    <input type="text" id="email" required />
                     <label>Email</label>
                 </div>
                 <div class="input-box">
@@ -46,26 +46,26 @@
 
         <div class="form-box register">
           <h2>Registro</h2>
-          <form action="#">
+          <form id="registerForm">
             <div class="input-box">
               <span class="icon">
                 <ion-icon name="person"></ion-icon>
               </span>
-              <input type="text" required />
+              <input type="text" id="username" required />
               <label>Nombre</label>
             </div>
             <div class="input-box">
               <span class="icon">
                 <ion-icon name="mail"></ion-icon>
               </span>
-              <input type="text" required />
+              <input type="text" id="registerEmail" required />
               <label>Email</label>
             </div>
             <div class="input-box">
               <span class="icon">
                 <ion-icon name="lock"></ion-icon>
               </span>
-              <input type="password" required />
+              <input type="password" id="registerPassword" required />
               <label>Contraseña</label>
             </div>
             <div class="remember-forgot">
@@ -76,9 +76,7 @@
             <button type="submit" class="btn">Registrar</button>
             <div class="login-register">
               <p>
-                ¿Ya tienes una cuenta?<a href="#" class="login-link"
-                  >Inicia sesion</a
-                >
+                ¿Ya tienes una cuenta?<a href="#" class="login-link">Inicia sesion</a>
               </p>
             </div>
           </form>
@@ -125,29 +123,54 @@
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            var formData = new FormData();
-            formData.append('username', document.getElementById('username').value);
-            formData.append('password', document.getElementById('password').value);
-
-            fetch('php/login/longin.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = 'php/ubicacion/pagina_conductor.php';
-                } else {
-                    alert('Inicio de sesión fallido');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+      document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        var formData = new FormData();
+        formData.append('email', document.getElementById('email').value); // Corrige 'emali' a 'email'
+        formData.append('password', document.getElementById('password').value);
+    
+        fetch('php/login.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            window.location.href = 'php/ubicacion/pagina_conductor.php';
+          } else {
+            alert('Inicio de sesión fallido: ' + data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
         });
+      });
+
+      document.getElementById('registerForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var formData = new FormData();
+        formData.append('username', document.getElementById('username').value);
+        formData.append('email', document.getElementById('registerEmail').value);
+        formData.append('password', document.getElementById('registerPassword').value);
+
+        fetch('php/register.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Registro exitoso');
+          } else {
+            alert('Error en el registro: ' + data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      });
     </script>
   </body>
 </html>

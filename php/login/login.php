@@ -1,12 +1,12 @@
 <?php
 session_start();
-include 'db.php';
+include '../db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = pg_escape_string($conn, $_POST['username']);
+    $email = pg_escape_string($conn, $_POST['email']);
     $password = pg_escape_string($conn, $_POST['password']);
 
-    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = pg_query($conn, $sql);
 
     if (pg_num_rows($result) > 0) {
