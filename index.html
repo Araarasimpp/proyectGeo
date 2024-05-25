@@ -132,14 +132,14 @@
             formData.append('username', document.getElementById('username').value);
             formData.append('password', document.getElementById('password').value);
 
-            fetch('longin.php', {
+            fetch('php/login/longin.php', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    window.location.href = 'pagina_conductor.php';
+                    window.location.href = 'php/ubicacion/pagina_conductor.php';
                 } else {
                     alert('Inicio de sesión fallido');
                 }
