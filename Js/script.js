@@ -139,17 +139,6 @@ var points = [
   { name: "CALLE 45 CON KR 2B", coords: [3.465166, -76.506937] },
   { name: "CRA 2DA", coords: [3.467101, -76.505106] },
   { name: "CRA 2DA CON CL 52 Y 56", coords: [3.468522, -76.500620] },
-  { name: "SENA", coords: [] },
-  { name: "CALLE 62", coords: [] },
-  { name: "CRA 1D", coords: [] },
-  { name: "OLIMPICA", coords: [] },
-  { name: "CHIMINANGOS", coords: [] },
-  { name: "CALLE 70", coords: [] },
-  { name: "LOS ALCAZARES", coords: [] },
-  { name: "TERMINALITO", coords: [] },
-  { name: "14 DE CALIMA", coords: [] },
-  { name: "SAMECO", coords: [] },
-  { name: "BRISAS DE LOS ALAMOS", coords: [] }
 ];
 
 // Añadir los puntos al mapa
