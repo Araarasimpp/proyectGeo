@@ -27,7 +27,8 @@
 .panel input {
     width: 350px;
     padding: 10px;
-    margin: 5px 0;
+    margin: 10px 0;
+    border: none;
     box-sizing: border-box;
 }
 
@@ -219,7 +220,7 @@
     font-size: 1em;
     color: #162938;
     font-weight: 600;
-    padding: 0 35px 0 5px;
+    padding: 0 0px 0 5px;
 }
 
 .input-box .icon{
@@ -354,6 +355,7 @@
     height: 30px;
     text-align: center;
 }
+
 .outer-circle {
     width: 10px;
     height: 10px;
@@ -362,6 +364,7 @@
     position: relative;
     box-shadow: 0 0 5px 5px rgba(104, 164, 255, 0.5); /* Difuminado */
 }
+
 .inner-circle {
     width: 10px;
     height: 10px;
