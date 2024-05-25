@@ -1,125 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mapa Interactivo con Leaflet</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="Css/styles.css" />
-</head>
-<body>
+  </head>
+  <body>
     <div id="map">
-        <div class="modal">
-            <span class="close-icon">
-                <ion-icon name="close"></ion-icon>
-            </span>
+      <div class="modal">
+        <span class="close-icon">
+          <ion-icon name="close"></ion-icon>
+        </span>
 
-            <div class="form-box login">
-                <h2>Iniciar sesión</h2>
-                <form action="#">
-                    <div class="input-box">
-                        <span class="icon">
-                            <ion-icon name="mail"></ion-icon>
-                        </span>
-                        <input type="text" required />
-                        <label>Email</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon">
-                            <ion-icon name="lock"></ion-icon>
-                        </span>
-                        <input type="password" required />
-                        <label>Contraseña</label>
-                    </div>
-                    <div class="remember-forgot">
-                        <label> <input type="checkbox" />¿Recordar la contraseña? </label>
-                        <a href="#">¿Olvidó su contraseña?</a>
-                    </div>
-                    <button type="submit" class="btn">Iniciar sesión</button>
-                    <div class="login-register">
-                        <p>
-                            ¿No tienes una cuenta?<a href="#" class="register-link">Regístrate</a>
-                        </p>
-                    </div>
-                </form>
-            </div>
-
-            <div class="form-box register">
-                <h2>Registro</h2>
-                <form action="#">
-                    <div class="input-box">
-                        <span class="icon">
-                            <ion-icon name="person"></ion-icon>
-                        </span>
-                        <input type="text" required />
-                        <label>Nombre</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon">
-                            <ion-icon name="mail"></ion-icon>
-                        </span>
-                        <input type="text" required />
-                        <label>Email</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon">
-                            <ion-icon name="lock"></ion-icon>
-                        </span>
-                        <input type="password" required />
-                        <label>Contraseña</label>
-                    </div>
-                    <div class="remember-forgot">
-                        <label>
-                            <input type="checkbox" />Acepto los términos y condiciones
-                        </label>
-                    </div>
-                    <button type="submit" class="btn">Registrar</button>
-                    <div class="login-register">
-                        <p>
-                            ¿Ya tienes una cuenta?<a href="#" class="login-link">Inicia sesión</a>
-                        </p>
-                    </div>
-                </form>
-            </div>
+        <div class="form-box login">
+            <h2>Iniciar sesión</h2>
+            <form id="loginForm">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="text" id="username" required />
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock"></ion-icon>
+                    </span>
+                    <input type="password" id="password" required />
+                    <label>Contraseña</label>
+                </div>
+                <div class="remember-forgot">
+                    <label> <input type="checkbox" />¿Recordar la contraseña? </label>
+                    <a href="#">¿Olvidó su contraseña?</a>
+                </div>
+                <button type="submit" class="btn">Iniciar sesión</button>
+                <div class="login-register">
+                    <p>
+                        ¿No tienes una cuenta?<a href="#" class="register-link">Regístrate</a>
+                    </p>
+                </div>
+            </form>
         </div>
+
+        <div class="form-box register">
+          <h2>Registro</h2>
+          <form action="#">
+            <div class="input-box">
+              <span class="icon">
+                <ion-icon name="person"></ion-icon>
+              </span>
+              <input type="text" required />
+              <label>Nombre</label>
+            </div>
+            <div class="input-box">
+              <span class="icon">
+                <ion-icon name="mail"></ion-icon>
+              </span>
+              <input type="text" required />
+              <label>Email</label>
+            </div>
+            <div class="input-box">
+              <span class="icon">
+                <ion-icon name="lock"></ion-icon>
+              </span>
+              <input type="password" required />
+              <label>Contraseña</label>
+            </div>
+            <div class="remember-forgot">
+              <label>
+                <input type="checkbox" />I agree to the terms & conditions
+              </label>
+            </div>
+            <button type="submit" class="btn">Registrar</button>
+            <div class="login-register">
+              <p>
+                ¿Ya tienes una cuenta?<a href="#" class="login-link"
+                  >Inicia sesion</a
+                >
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <div class="panel">
-        <div class="titlebox">
-            <button class="hamburger-menu">
-                <img src="src/ui.svg" alt="" class="icon" />
-            </button>
-            Indicaciones para llegar
-        </div>
+      <div class="titlebox">
+        <button class="hamburger-menu">
+          <img src="src/ui.svg" alt="" class="icon" />
+        </button>
+        Indicaciones para llegar
+      </div>
 
-        <div class="">
-            <img src="src/point.svg" alt="" class="subicon" />
-            <input
-                type="text"
-                id="start"
-                placeholder="Selecciona el punto de salida:"
-            />
-        </div>
+      <div class="">
+        <img src="src/point.svg" alt="" class="subicon" />
+        <input
+          type="text"
+          id="start"
+          placeholder="Selecciona el punto de salida:"
+        />
+      </div>
 
-        <div class="">
-            <img src="src/ubicacion.svg" alt="" class="subicon" />
-            <input type="text" id="end" placeholder="Selecciona el destino:" />
-        </div>
+      <div class="">
+        <img src="src/ubicacion.svg" alt="" class="subicon" />
+        <input type="text" id="end" placeholder="Selecciona el destino:" />
+      </div>
     </div>
 
     <button class="btnLogin-popup">¿Eres conductor?</button>
 
     <button class="ubiButton" onclick="getLocation()">
-        <img src="src/ubicacion-icono.svg" alt="Ubicación" />
+      <img src="src/ubicacion-icono.svg" alt="Ubicación" />
     </button>
 
     <div class="leaflet-control-zoom-custom">
-        <button class="zoom-in" onclick="map.zoomIn()">+</button>
-        <button class="zoom-out" onclick="map.zoomOut()">-</button>
+      <button class="zoom-in" onclick="map.zoomIn()">+</button>
+      <button class="zoom-out" onclick="map.zoomOut()">-</button>
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="Js/script.js"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-</body>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData();
+            formData.append('username', document.getElementById('username').value);
+            formData.append('password', document.getElementById('password').value);
+
+            fetch('longin.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = 'pagina_conductor.php';
+                } else {
+                    alert('Inicio de sesión fallido');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+  </body>
 </html>
