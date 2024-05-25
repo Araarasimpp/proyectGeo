@@ -150,11 +150,11 @@
                 );
               }
               return response
-                .text() // Try parsing as text first
+                .text()
                 .then((text) => {
-                  console.log("Response text:", text); // Log the response text
+                  console.log("Response text:", text);
                   try {
-                    return JSON.parse(text); // Try to parse the text as JSON
+                    return JSON.parse(text);
                   } catch (error) {
                     throw new Error("Invalid JSON: " + text);
                   }
