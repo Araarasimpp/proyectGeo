@@ -20,13 +20,6 @@ var userMarker;
 // Intentar obtener la ubicación actual del usuario y centrar el mapa
 getLocation();
 
-// Función para calcular la ruta (ejemplo simple)
-function calculateRoute() {
-  var start = document.getElementById("start").value;
-  var end = document.getElementById("end").value;
-  alert("Calculando ruta desde " + start + " hasta " + end);
-}
-
 // Función para obtener la ubicación actual del usuario
 function getLocation() {
   if (navigator.geolocation) {
