@@ -13,7 +13,6 @@
         <span class="close-icon">
           <ion-icon name="close"></ion-icon>
         </span>
-
         <div class="form-box login">
           <h2>Iniciar sesión</h2>
           <form id="loginForm">
@@ -32,7 +31,7 @@
               <label>Contraseña</label>
             </div>
             <div class="remember-forgot">
-              <label> <input type="checkbox" />¿Recordar la contraseña? </label>
+              <label><input type="checkbox" />¿Recordar la contraseña?</label>
               <a href="#">¿Olvidó su contraseña?</a>
             </div>
             <button type="submit" class="btn">Iniciar sesión</button>
@@ -45,7 +44,6 @@
             </div>
           </form>
         </div>
-
         <div class="form-box register">
           <h2>Registro</h2>
           <form id="registerForm">
@@ -87,32 +85,24 @@
         </div>
       </div>
     </div>
-
     <div class="panel">
       <div class="titlebox">
-        <button class="hamburger-menu">
-         
-        </button>
+        <button class="hamburger-menu"></button>
         Indicaciones para llegar
       </div>
-
       <div class="">
-        <input placeholder="Selecciona el punto de salida:"/>
+        <input id="routeInput" placeholder="Selecciona el punto de salida:" />
+        <button onclick="showRoute()">Mostrar Ruta</button>
       </div>
-
     </div>
-
     <button class="btnLogin-popup">¿Eres conductor?</button>
-
     <button class="ubiButton" onclick="getLocation()">
       <img src="src/ubicacion-icono.svg" alt="Ubicación" />
     </button>
-
     <div class="leaflet-control-zoom-custom">
       <button class="zoom-in" onclick="map.zoomIn()">+</button>
       <button class="zoom-out" onclick="map.zoomOut()">-</button>
     </div>
-
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="Js/script.js"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
@@ -140,16 +130,14 @@
                   "Network response was not ok " + response.statusText
                 );
               }
-              return response
-                .text()
-                .then((text) => {
-                  console.log("Response text:", text);
-                  try {
-                    return JSON.parse(text);
-                  } catch (error) {
-                    throw new Error("Invalid JSON: " + text);
-                  }
-                });
+              return response.text().then((text) => {
+                console.log("Response text:", text);
+                try {
+                  return JSON.parse(text);
+                } catch (error) {
+                  throw new Error("Invalid JSON: " + text);
+                }
+              });
             })
             .then((data) => {
               if (data.success) {
