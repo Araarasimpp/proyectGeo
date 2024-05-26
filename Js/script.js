@@ -134,7 +134,13 @@ function showRoute() {
   }
 }
 
-// Añadir los puntos al mapa
-points.forEach(function (point) {
-  L.marker(point.coords).addTo(map).bindPopup(point.name);
+const hamburgerMenu = document.querySelector(".hamburger-menu");
+const panel = document.querySelector(".panel");
+
+hamburgerMenu.addEventListener("click", () => {
+  panel.classList.toggle("open");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  getLocation();
 });
