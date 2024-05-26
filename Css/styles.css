@@ -5,6 +5,10 @@
     font-family: Arial, sans-serif;
 }
 
+body {
+    background-color: #f4f4f4; /* Añade un color de fondo suave */
+}
+
 #map {
     display: flex;
     justify-content: center;
@@ -307,9 +311,7 @@
 }
 
 .ubiButton img {
-    width: 20px; /* Ajusta el tamaño del icono según sea necesario */
-    height: 20px;
-    vertical-align: middle; /* Alinea verticalmente la imagen en el centro */
+    width: 20px;
 }
 
 .leaflet-control-zoom-custom {
@@ -339,6 +341,7 @@
     color: #333;
     line-height: 1;
     outline: none;
+    transition: background-color 0.3s ease; /* Añade una transición suave al cambiar el color de fondo */
 }
 
 .leaflet-control-zoom-custom button:hover {
@@ -354,6 +357,9 @@
     width: 30px;
     height: 30px;
     text-align: center;
+    border-radius: 50%; /* Hace que el icono sea circular */
+    background-color: #3c91e6; /* Color de fondo del icono */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para darle un poco de profundidad */
 }
 
 .outer-circle {

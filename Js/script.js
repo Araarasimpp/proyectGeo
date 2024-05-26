@@ -81,6 +81,7 @@ closeIcon.addEventListener("click", () => {
   modal.classList.remove("activate-popup");
 });
 
+/* Obtencion de informacion del formulario de inicio de sesion y registro + conexion a la base de datos */ 
 document
   .getElementById("loginForm")
   .addEventListener("submit", function (event) {
