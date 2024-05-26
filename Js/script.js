@@ -132,7 +132,7 @@ function showRoute() {
   } else {
     alert("Ruta no encontrada.");
   }
-}
+};
 
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 const panel = document.querySelector(".panel");
