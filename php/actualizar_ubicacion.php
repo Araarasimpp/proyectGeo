@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Actualizar la ubicación en la tabla buses
-    $sql = "UPDATE buses SET latitude = '$latitude', longitude = '$longitude', update_at = NOW() WHERE id = (SELECT route_id FROM users WHERE id = '$user_id')";
+    $sql = "UPDATE locations SET latitude = '$latitude', longitude = '$longitude', update_at = NOW() WHERE id = (SELECT some_value::INTEGER FROM some_table WHERE condition = '$user_id')";
     $result = pg_query($conn, $sql);
 
     if ($result) {
