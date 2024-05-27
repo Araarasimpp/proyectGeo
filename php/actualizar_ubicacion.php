@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $longitude = pg_escape_string($conn, $_POST['longitude']);
 
     // Verificar si el usuario tiene una ruta registrada
-    $check_sql = "SELECT route_id FROM users WHERE id = '$user_id'";
+    $check_sql = "SELECT route_id, bus_name FROM users WHERE id = '$user_id'";
     $check_result = pg_query($conn, $check_sql);
     $row = pg_fetch_assoc($check_result);
 
@@ -22,8 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // Actualizar la ubicación en la tabla buses
-    $sql = "UPDATE buses SET latitude = '$latitude', longitude = '$longitude', update_at = NOW() WHERE id = (SELECT route_id::INTEGER FROM users WHERE id = '$user_id')";
+    // Insertar o actualizar la ubicación en la tabla buses
+    $sql = "INSERT INTO buses (id, bus_name, latitude, longitude, update_at) VALUES ('{$row['route_id']}', '{$row['bus_name']}', '$latitude', '$longitude', NOW())
+            ON CONFLICT (id, bus_name) DO UPDATE SET latitude = EXCLUDED.latitude, longitude = EXCLUDED.longitude, update_at = EXCLUDED.update_at";
     $result = pg_query($conn, $sql);
 
     if ($result) {

@@ -13,8 +13,8 @@ if (!isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar Ubicación del Autobús</title>
     <script>
-var routes = {
-  1: [
+        var routes = {
+            1: [
     { name: "DESPACHO LA MARIA", coords: [3.308608, -76.539735] },
     { name: "CAÑAS GORDAS", coords: [3.324761, -76.53401] },
     { name: "ICESI", coords: [3.341837, -76.530986] },
@@ -53,10 +53,40 @@ var routes = {
     { name: "CRA 2DA", coords: [3.467101, -76.505106] },
     { name: "CRA 2DA CON CL 52 Y 56", coords: [3.468522, -76.50062] },
   ],
-};
+        };
+
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("obtener_ruta_registrada.php")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('registeredRoute').innerText = "Ruta registrada: " + data.route_id + " (" + data.bus_name + ")";
+                        document.getElementById('busName').value = data.bus_name;
+                    } else {
+                        document.getElementById('registeredRoute').innerText = "No hay ruta registrada.";
+                    }
+                });
+
+            document.getElementById('deleteRoute').addEventListener('click', function() {
+                if (confirm("¿Estás seguro de eliminar la ruta registrada?")) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "eliminar_ruta.php", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.send("user_id=<?php echo $_SESSION['user_id']; ?>");
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            alert(xhr.responseText);
+                            location.reload(); // Recargar la página para reflejar los cambios
+                        }
+                    };
+                }
+            });
+        });
 
         function registerRoute() {
             var routeId = document.getElementById('routeId').value;
+            var busName = document.getElementById('busName').value;
 
             if (!routes.hasOwnProperty(routeId)) {
                 alert("Ruta no válida.");
@@ -66,11 +96,12 @@ var routes = {
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "registrar_ruta.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("user_id=<?php echo $_SESSION['user_id']; ?>&route_id=" + routeId + "&valid_routes=" + encodeURIComponent(JSON.stringify(routes)));
+            xhr.send("user_id=<?php echo $_SESSION['user_id']; ?>&route_id=" + routeId + "&bus_name=" + encodeURIComponent(busName) + "&valid_routes=" + encodeURIComponent(JSON.stringify(routes)));
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert(xhr.responseText);
+                    location.reload(); // Recargar la página para reflejar los cambios
                 }
             };
         }
@@ -103,9 +134,17 @@ var routes = {
 <body>
     <h1>Conductor</h1>
     <p>Esta página actualiza automáticamente la ubicación del autobús.</p>
+    <p id="registeredRoute"></p>
+    <button id="deleteRoute">Eliminar Ruta Registrada</button>
+    <br><br>
     <label for="routeId">Número de Ruta:</label>
     <input type="text" id="routeId" />
+    <br>
+    <label for="busName">Nombre del Autobús:</label>
+    <input type="text" id="busName" />
+    <br>
     <button onclick="registerRoute()">Registrar Ruta</button>
+    <br><br>
     <a href="logout.php">Cerrar sesión</a>
 </body>
 </html>

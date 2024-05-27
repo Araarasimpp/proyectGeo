@@ -10,6 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = pg_escape_string($conn, $_POST['user_id']);
     $route_id = pg_escape_string($conn, $_POST['route_id']);
+    $bus_name = pg_escape_string($conn, $_POST['bus_name']);
 
     // Verificar si la ruta existe en 'routes' array de JavaScript
     $valid_routes = array_keys(json_decode($_POST['valid_routes'], true));
@@ -28,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    $sql = "UPDATE users SET route_id = '$route_id' WHERE id = '$user_id'";
+    // Registrar la ruta y el nombre del autobús
+    $sql = "UPDATE users SET route_id = '$route_id', bus_name = '$bus_name' WHERE id = '$user_id'";
     $result = pg_query($conn, $sql);
 
     if ($result) {
