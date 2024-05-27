@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $longitude = pg_escape_string($conn, $_POST['longitude']);
 
     // Verificar si el usuario tiene una ruta registrada
-    $check_sql = "SELECT route_id FROM users WHERE id = '$user_id'";
+    $check_sql = "SELECT id FROM buses WHERE id = '$user_id'";
     $check_result = pg_query($conn, $check_sql);
     $row = pg_fetch_assoc($check_result);
 
