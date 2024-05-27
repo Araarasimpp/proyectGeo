@@ -120,24 +120,35 @@ document
       });
   });
 
-document
-  .getElementById("registerForm")
-  .addEventListener("submit", function (event) {
+  document.getElementById("registerForm").addEventListener("submit", async function (event) {
     event.preventDefault();
-
+  
     var formData = new FormData();
     formData.append("username", document.getElementById("username").value);
     formData.append("email", document.getElementById("registerEmail").value);
-    formData.append(
-      "password",
-      document.getElementById("registerPassword").value
-    );
-
+    formData.append("password", document.getElementById("registerPassword").value);
+  
     fetch("php/register.php", {
       method: "POST",
       body: formData,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok " + response.statusText);
+        }
+        return response.text().then((text) => {
+          console.log("Response text:", text);
+          try {
+            if (text.startsWith('{') || text.startsWith('[')) {
+              return JSON.parse(text);
+            } else {
+              throw new Error("La respuesta no es JSON: " + text);
+            }
+          } catch (error) {
+            throw new Error("JSON inválido: " + text);
+          }
+        });
+      })
       .then((data) => {
         if (data.success) {
           alert("Registro exitoso");
@@ -148,7 +159,38 @@ document
       .catch((error) => {
         console.error("Error:", error);
       });
+    });
+    /*
+    try {
+      let response = await fetch("php/register.php", {
+        method: "POST",
+        body: formData,
+      });
+  
+      let text = await response.text();
+      console.log("Response text:", text);
+  
+      let data;
+      try {
+        if (text.startsWith('{') || text.startsWith('[')) {
+          data = JSON.parse(text);
+        } else {
+          throw new Error("La respuesta no es JSON: " + text);
+        }
+      } catch (error) {
+        throw new Error("JSON inválido: " + text);
+      }
+  
+      if (data.success) {
+        alert("Registro exitoso");
+      } else {
+        alert("Error en el registro: " + data.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   });
+  */
 
 // Lista de puntos de referencia con sus coordenadas
 var routes = {
