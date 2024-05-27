@@ -195,14 +195,31 @@ var routes = {
 
 function showRoute() {
   var routeId = document.getElementById("routeInput").value;
-  if (routes[routeId]) {
-    routes[routeId].forEach((point) => {
-      L.marker(point.coords).bindPopup(point.name).addTo(map);
+
+  fetch(`obtener_ubicacion.php?route_id=${routeId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        var driverLat = data.latitude;
+        var driverLon = data.longitude;
+
+        var driverIcon = L.divIcon({
+          className: "driver-location-icon",
+          html: '<div class="outer-circle"><div class="inner-circle"></div></div>'
+        });
+
+        if (driverMarker) {
+          map.removeLayer(driverMarker);
+        }
+
+        driverMarker = L.marker([driverLat, driverLon], { icon: driverIcon }).addTo(map);
+        driverMarker.openPopup();
+        map.setView([driverLat, driverLon], 13);
+      } else {
+        alert("No se pudo encontrar la ubicación del conductor.");
+      }
     });
-  } else {
-    alert("Ruta no encontrada.");
   }
-}
 
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 const panel = document.querySelector(".panel");
