@@ -17,7 +17,7 @@ if (!isset($_SESSION['user_id'])) {
             var routeId = document.getElementById('routeId').value;
 
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "register_route.php", true);
+            xhr.open("POST", "registrar_ruta.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.send("user_id=<?php echo $_SESSION['user_id']; ?>&route_id=" + routeId);
 
@@ -35,7 +35,7 @@ if (!isset($_SESSION['user_id'])) {
                     var lon = position.coords.longitude;
 
                     var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "update_location.php", true);
+                    xhr.open("POST", "actualizar_ubicacion.php", true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.send("user_id=<?php echo $_SESSION['user_id']; ?>&latitude=" + lat + "&longitude=" + lon);
 
