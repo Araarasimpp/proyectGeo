@@ -15,7 +15,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = pg_query($conn, $sql);
 
     if ($result) {
-        echo "Ruta eliminada correctamente.";
+        // Obtener el nombre del bus asociado al usuario
+        $sql_bus = "SELECT bus_name FROM users WHERE id = '$user_id'";
+        $result_bus = pg_query($conn, $sql_bus);
+        if ($row = pg_fetch_assoc($result_bus)) {
+            $bus_name = $row['bus_name'];
+    
+            // Eliminar el bus de la tabla de buses
+            $sql_delete_bus = "DELETE FROM buses WHERE bus_name = '$bus_name'";
+            $result_delete_bus = pg_query($conn, $sql_delete_bus);
+    
+            if ($result_delete_bus) {
+                echo "Ruta y bus eliminados correctamente.";
+            } else {
+                echo "Error al eliminar el bus.";
+            }
+        } else {
+            echo "Error al obtener el nombre del bus.";
+        }
     } else {
         echo "Error al eliminar la ruta.";
     }
