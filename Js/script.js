@@ -194,32 +194,37 @@ var routes = {
 };
 
 function showRoute() {
-  var routeId = document.getElementById("routeInput").value;
+  var routeInput = document.getElementById('routeInput').value;
+  var routeId = parseInt(routeInput);
 
-  fetch(`obtener_ubicacion.php?route_id=${routeId}`)
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        var driverLat = data.latitude;
-        var driverLon = data.longitude;
-
-        var driverIcon = L.divIcon({
-          className: "driver-location-icon",
-          html: '<div class="outer-circle"><div class="inner-circle"></div></div>'
-        });
-
-        if (driverMarker) {
-          map.removeLayer(driverMarker);
-        }
-
-        driverMarker = L.marker([driverLat, driverLon], { icon: driverIcon }).addTo(map);
-        driverMarker.openPopup();
-        map.setView([driverLat, driverLon], 13);
-      } else {
-        alert("No se pudo encontrar la ubicación del conductor.");
+  // Verifica si la ruta existe
+  if (routes[routeId]) {
+    // Limpia las capas existentes en el mapa
+    map.eachLayer(function (layer) {
+      if (!!layer.toGeoJSON) {
+        map.removeLayer(layer);
       }
     });
+
+    // Añadir capa de mapa base nuevamente
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Añadir puntos de referencia al mapa
+    routes[routeId].forEach(function (point) {
+      L.marker(point.coords).addTo(map).bindPopup(point.name);
+    });
+
+    // Ajustar la vista del mapa para incluir todos los puntos de referencia
+    var bounds = routes[routeId].map(function (point) {
+      return point.coords;
+    });
+    map.fitBounds(bounds);
+  } else {
+    alert('Ruta no encontrada');
   }
+}
 
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 const panel = document.querySelector(".panel");
