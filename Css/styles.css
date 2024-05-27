@@ -1,8 +1,10 @@
 /* CSS*/
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Rubik", sans-serif;
 }
 
 body {
@@ -29,11 +31,18 @@ body {
 }
 
 .panel input {
-    width: 350px;
+    width: 180px;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px 57px;
     border: none;
     box-sizing: border-box;
+}
+
+.panel .icon{
+    position: absolute;
+    right: 80px;
+    font-size: 1.25em;
+    line-height: 62px;
 }
 
 .titlebox{

@@ -20,7 +20,7 @@
               <span class="icon">
                 <ion-icon name="mail"></ion-icon>
               </span>
-              <input type="text" id="email" required />
+              <input type="email" id="email" required />
               <label>Email</label>
             </div>
             <div class="input-box">
@@ -58,7 +58,7 @@
               <span class="icon">
                 <ion-icon name="mail"></ion-icon>
               </span>
-              <input type="text" id="registerEmail" required />
+              <input type="email" id="registerEmail" required />
               <label>Email</label>
             </div>
             <div class="input-box">
@@ -76,9 +76,7 @@
             <button type="submit" class="btn">Registrar</button>
             <div class="login-register">
               <p>
-                ¿Ya tienes una cuenta?<a href="#" class="login-link"
-                  >Inicia sesion</a
-                >
+                ¿Ya tienes una cuenta?<a href="#" class="login-link">Inicia sesion</a>
               </p>
             </div>
           </form>
@@ -90,9 +88,11 @@
         <button class="hamburger-menu"></button>
         Indicaciones para llegar
       </div>
-      <div class="">
-        <input id="routeInput" placeholder="Selecciona el punto de salida:" />
-        <button onclick="showRoute()">Mostrar Ruta</button>
+      <div class="route-button">
+        <span class="icon">
+          <ion-icon onclick="showRoute()" name="search"></ion-icon>
+        </span>
+        <input id="routeInput" placeholder="Buscar ruta:" />
       </div>
     </div>
     <button class="btnLogin-popup">¿Eres conductor?</button>
