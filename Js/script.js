@@ -357,16 +357,13 @@ var routeCoordinates = [
 // Lista de puntos de referencia con sus coordenadas
 var routes = {
   1: [
-    { name: "DESPACHO LA MARIA", coords: [3.308608, -76.539735] },
     { name: "CAÑAS GORDAS", coords: [3.324761, -76.53401] },
     { name: "ICESI", coords: [3.341837, -76.530986] },
     { name: "JAVERIANA", coords: [3.348674, -76.530412] },
     { name: "CIUDAD JARDIN", coords: [3.360371, -76.530677] },
-    { name: "JARDIN PLAZA", coords: [3.368843, -76.529505] },
     { name: "ENTRADA MOTOS UNIVALLE", coords: [3.370258, -76.534817] },
     { name: "UNIVALLE", coords: [3.375138, -76.537198] },
     { name: "CALLE 13 CON KR 68 Y 66", coords: [3.397186, -76.537868] },
-    { name: "CRA 56", coords: [3.404232, -76.532812] },
     { name: "CALLE 14 ENTRE 34 Y 33A", coords: [3.422966, -76.527446] },
     { name: "CALLE 13", coords: [3.440018, -76.528438] },
     { name: "CALLE 20 ", coords: [3.450593, -76.523851] },
