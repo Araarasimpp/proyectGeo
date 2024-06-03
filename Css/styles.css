@@ -31,19 +31,42 @@ body {
 }
 
 .panel input {
-    width: 180px;
+    width: 200px;
     padding: 10px;
-    margin: 10px 57px;
-    border: none;
+    margin: 10px 25px;
     box-sizing: border-box;
 }
 
 .panel .icon{
     position: absolute;
-    right: 80px;
+    right: 40px;
     font-size: 1.25em;
-    line-height: 62px;
+    line-height: 65px;
 }
+
+.dropdown-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0 25px;
+    background: white;
+    border: 1px solid #ccc;
+    position: absolute;
+    text-align: center;
+    top: 130px; /* Ajustar según la altura del panel */
+    left: 20px; /* Alineado con el panel */
+    width: 200px; /* Ajustar según el ancho del input */
+    display: none;
+    z-index: 1001; /* Para asegurarse de que esté por encima del mapa */
+  }
+
+  .dropdown-menu li {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .dropdown-menu li:hover {
+    background: #f0f0f0;
+  }
 
 .titlebox{
     margin: 0;

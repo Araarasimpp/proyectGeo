@@ -92,9 +92,11 @@
         <span class="icon">
           <ion-icon onclick="showRoute()" name="search"></ion-icon>
         </span>
-        <input id="routeInput" placeholder="Buscar ruta:" />
+        <input id="routeInput" placeholder="Buscar ruta:" onkeyup="filterRoutes()" autocomplete="off"/>
+        
       </div>
     </div>
+    <ul id="dropdownMenu" class="dropdown-menu"></ul>
     <button class="btnLogin-popup">¿Eres conductor?</button>
     <button class="ubiButton" onclick="getLocation()">
       <img src="src/ubicacion-icono.svg" alt="Ubicación" />

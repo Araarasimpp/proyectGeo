@@ -376,6 +376,10 @@ var routes = {
     { name: "CL 84 ENTRE KR 2NBIS Y 2AN", coords: [3.496765, -76.487857] },
     { name: "CL 82NTE", coords: [3.493521, -76.486372] },
   ],
+
+  '1A': [
+    
+  ]
 };
 
 // Crear ícono personalizado
@@ -420,6 +424,38 @@ function showRoute() {
     map.fitBounds(bounds);
   } else {
     alert('Ruta no encontrada');
+  }
+}
+
+// Función para filtrar las rutas y mostrar el menú desplegable
+function filterRoutes() {
+  var input = document.getElementById('routeInput').value.toLowerCase();
+  var dropdownMenu = document.getElementById('dropdownMenu');
+  dropdownMenu.innerHTML = ''; // Limpiar el menú
+
+  // Filtrar rutas
+  for (var routeId in routes) {
+    if (routeId.startsWith(input)) {
+      var li = document.createElement('li');
+      li.textContent = '' + routeId;
+      li.onclick = (function(routeIdCopy) {
+        return function() {
+          showRoute(routeIdCopy);
+          dropdownMenu.style.display = 'none';
+          document.getElementById('routeInput').value = '' + routeIdCopy; // Completa el valor del input con la ruta seleccionada
+        };
+      })(routeId);
+      dropdownMenu.appendChild(li);
+    }
+  }
+
+  // Mostrar u ocultar el menú desplegable
+  if (input === '') {
+    dropdownMenu.style.display = 'none';
+  } else if (dropdownMenu.children.length > 0) {
+    dropdownMenu.style.display = 'block';
+  } else {
+    dropdownMenu.style.display = 'none';
   }
 }
 
