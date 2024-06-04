@@ -13,6 +13,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
+/*
 function onMapClick(e) {
   //obtener coordenadas del clic
   var lat = e.latlng.lat;
@@ -24,6 +25,7 @@ function onMapClick(e) {
 
 //Agregar el controlador de evento clic al mapa
 map.on('click', onMapClick);
+*/
 
 var userMarker;
 getLocation();
