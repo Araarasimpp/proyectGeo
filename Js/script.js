@@ -13,6 +13,18 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
+function onMapClick(e) {
+  //obtener coordenadas del clic
+  var lat = e.latlng.lat;
+  var lon = e.latlng.lng;
+
+  //Mostrar las coordenadas en un mensaje
+  alert(lat + ", " + lon);
+}
+
+//Agregar el controlador de evento clic al mapa
+map.on('click', onMapClick);
+
 var userMarker;
 getLocation();
 
@@ -336,7 +348,26 @@ var allRouteCoordinates = { 1:[
     [3.457988, -76.530269],
     [3.457857, -76.530612],
     [3.457733, -76.530781],
-    [3.453800, -76.535676],
+    [3.456501, -76.532157],
+    [3.455560, -76.533543],
+    [3.455212, -76.534114],
+    [3.453776, -76.535751],
+    [3.453510, -76.535875],
+    [3.453209, -76.535941],
+    [3.452886, -76.535954],
+    [3.452687, -76.536027],
+    [3.452589, -76.536126],
+    [3.452449, -76.536292],
+    [3.452049, -76.536718],
+    [3.451709, -76.537293],
+    [3.451414, -76.537656],
+    [3.451162, -76.537884],
+    [3.451028, -76.537955],
+    [3.450874, -76.537989],
+    [3.450695, -76.537953],
+    [3.4481012356673713, -76.53700053691865],
+    [3.4467143656068964, -76.53674304485322],
+  
     
 
 
