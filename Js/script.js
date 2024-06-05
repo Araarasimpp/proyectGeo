@@ -307,9 +307,9 @@ var customIcon = L.icon({
 });
 
 // Función para mostrar la ruta y los puntos de referencia
-function showRoute() {
+function showRoute(routeId) {
   var routeInput = document.getElementById('routeInput').value;
-  var routeId = parseInt(routeInput);
+  routeId = routeId || parseInt(routeInput);
 
   if (routes[routeId] && allRouteCoordinates[routeId]) {
     // Limpia las capas existentes en el mapa
@@ -342,6 +342,9 @@ function showRoute() {
   } else {
     alert('Ruta no encontrada');
   }
+
+    // Ocultar el menú desplegable después de mostrar la ruta
+    document.getElementById('dropdownMenu').style.display = 'none';
 }
 
 // Función para filtrar las rutas y mostrar el menú desplegable
@@ -357,9 +360,9 @@ function filterRoutes() {
       li.textContent = '' + routeId;
       li.onclick = (function(routeIdCopy) {
         return function() {
+          document.getElementById('routeInput').value = '' + routeIdCopy; // Completa el valor del input con la ruta seleccionada
           showRoute(routeIdCopy);
           dropdownMenu.style.display = 'none';
-          document.getElementById('routeInput').value = '' + routeIdCopy; // Completa el valor del input con la ruta seleccionada
         };
       })(routeId);
       dropdownMenu.appendChild(li);
@@ -373,6 +376,14 @@ function filterRoutes() {
     dropdownMenu.style.display = 'block';
   } else {
     dropdownMenu.style.display = 'none';
+  }
+}
+
+// Función para manejar el evento de presionar Enter
+function handleEnter(event) {
+  if (event.key === 'Enter') {
+    showRoute();
+    document.getElementById('dropdownMenu').style.display = 'none';
   }
 }
 

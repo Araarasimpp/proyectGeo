@@ -53,8 +53,8 @@ body {
     border: 1px solid #ccc;
     position: absolute;
     text-align: center;
-    top: 130px; /* Ajustar según la altura del panel */
-    left: 20px; /* Alineado con el panel */
+    top: 120px; /* Ajustar según la altura del panel */
+    left: 10px; /* Alineado con el panel */
     width: 200px; /* Ajustar según el ancho del input */
     display: none;
     z-index: 1001; /* Para asegurarse de que esté por encima del mapa */
