@@ -18,6 +18,6 @@ if (!$conn) {
     echo "Error: No se pudo conectar a la base de datos.\n";
     exit;
 }else {
-    echo "Conectado correctamente"
+    echo "Conectado correctamente";
 }
 ?>
