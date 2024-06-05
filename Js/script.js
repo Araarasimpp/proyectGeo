@@ -1,6 +1,14 @@
 var userMarker;
 getLocation();
 
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    alert("Geolocalización no es soportada por este navegador.");
+  }
+}
+
 // Inicializar el mapa con una vista centrada por defecto
 var map = L.map("map", {
   minZoom: 2,
@@ -15,28 +23,6 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
-
-
-function onMapClick(e) {
-  //obtener coordenadas del clic
-  var lat = e.latlng.lat;
-  var lon = e.latlng.lng;
-
-  //Mostrar las coordenadas en un mensaje
-  alert(lat + ", " + lon);
-}
-
-//Agregar el controlador de evento clic al mapa
-map.on('click', onMapClick);
-
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
-  } else {
-    alert("Geolocalización no es soportada por este navegador.");
-  }
-}
 
 function showPosition(position) {
   var lat = position.coords.latitude;
