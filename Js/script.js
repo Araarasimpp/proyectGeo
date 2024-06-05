@@ -1,6 +1,11 @@
 var userMarker;
 getLocation();
 
+document.addEventListener("DOMContentLoaded", () => {
+  getLocation();
+});
+
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -372,7 +377,3 @@ function filterRoutes() {
 }
 
 const panel = document.querySelector(".panel");
-
-document.addEventListener("DOMContentLoaded", () => {
-  getLocation();
-});
