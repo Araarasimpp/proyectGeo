@@ -342,9 +342,10 @@ function showRoute(routeId) {
   } else {
     alert('Ruta no encontrada');
   }
+    
+    // Muestra la ubicacion actual del usuario
+    getLocation();
 
-    // Ocultar el menú desplegable después de mostrar la ruta
-    document.getElementById('dropdownMenu').style.display = 'none';
 }
 
 // Función para filtrar las rutas y mostrar el menú desplegable
