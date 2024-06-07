@@ -415,7 +415,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-@media (max-width: 520px) {
+@media (max-width: 768px) {
     .leaflet-control-zoom-custom,
     .ubiButton {
         display: none; /* Ocultar estos elementos en dispositivos móviles */
@@ -423,7 +423,7 @@ body {
 
      /* Mover el panel a la parte inferior en dispositivos móviles */
      .panel {
-        top: 400px; /* Elimina la parte superior */
+        top: 650px; /* Elimina la parte superior */
         bottom: 0; /* Mueve el panel al fondo */
         left: 0; /* Alinea a la izquierda */
         right: 0; /* Alínea a la derecha */
