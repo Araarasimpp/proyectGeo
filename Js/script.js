@@ -3,6 +3,7 @@ var watchID;
 
 var currentLat = 0; // Variable global para almacenar la latitud
 var currentLon = 0; // Variable global para almacenar la longitud
+let mapCentered = false; // Variable de control para centrar el mapa solo una vez
 
 document.addEventListener("DOMContentLoaded", () => {
   getLocation();
@@ -37,8 +38,11 @@ function showPosition(position) {
     userMarker = L.marker([currentLat, currentLon], { icon: userIcon }).addTo(map);
   }
 
-  // Centrar el mapa en la nueva posición del usuario
-  map.setView([currentLat, currentLon], 13);
+  if (!mapCentered) {
+    // Centrar el mapa solo la primera vez
+    map.setView([currentLat, currentLon], 13);
+    mapCentered = true; // Marcar como centrado para evitar centrar de nuevo
+  }
 }
 
 function showError(error) {
@@ -399,5 +403,22 @@ function handleEnter(event) {
     document.getElementById('dropdownMenu').style.display = 'none';
   }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.querySelector('.modal');
+  const closeIcon = document.querySelector('.modal .close-icon');
+
+  closeIcon.addEventListener('click', function () {
+      // Añadir la clase close-popup para activar la animación
+      modal.classList.add('close-popup');
+
+      // Esperar hasta que la animación termine antes de quitar el modal de la pantalla
+      setTimeout(() => {
+          modal.classList.remove('activate-popup');
+          modal.classList.remove('close-popup');
+          modal.style.left = '-100%'; // Reestablecer posición
+      }, 500); // Tiempo en ms correspondiente a la duración de la animación
+  });
+});
 
 const panel = document.querySelector(".panel");
