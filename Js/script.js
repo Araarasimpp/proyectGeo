@@ -1,5 +1,8 @@
 var userMarker;
-getLocation();
+var watchID;
+
+var currentLat = 0; // Variable global para almacenar la latitud
+var currentLon = 0; // Variable global para almacenar la longitud
 
 document.addEventListener("DOMContentLoaded", () => {
   getLocation();
@@ -7,27 +10,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
+    // Inicia la observación de la posición del usuario
+    watchID = navigator.geolocation.watchPosition(showPosition, showError, {
+      enableHighAccuracy: true, // Usar la mayor precisión disponible
+      maximumAge: 0, // No utilizar posiciones guardadas en caché
+    });
   } else {
     alert("Geolocalización no es soportada por este navegador.");
   }
 }
 
 function showPosition(position) {
-  var lat = position.coords.latitude;
-  var lon = position.coords.longitude;
+  currentLat = position.coords.latitude; // Almacena la latitud actual
+  currentLon = position.coords.longitude; // Almacena la longitud actual
+
   var userIcon = L.divIcon({
     className: "user-location-icon",
     html: '<div class="outer-circle"><div class="inner-circle"></div></div>',
   });
 
   if (userMarker) {
-    map.removeLayer(userMarker);
+    // Actualizar la posición del marcador
+    userMarker.setLatLng([currentLat, currentLon]);
+  } else {
+    // Crear un nuevo marcador en la posición del usuario
+    userMarker = L.marker([currentLat, currentLon], { icon: userIcon }).addTo(map);
   }
 
-  userMarker = L.marker([lat, lon], { icon: userIcon }).addTo(map);
-  userMarker.openPopup();
-  map.setView([lat, lon], 13);
+  // Centrar el mapa en la nueva posición del usuario
+  map.setView([currentLat, currentLon], 13);
 }
 
 function showError(error) {
@@ -38,12 +49,18 @@ function showError(error) {
     case error.POSITION_UNAVAILABLE:
       alert("La información de ubicación no está disponible.");
       break;
-    case error.TIMEOUT:
-      alert("La solicitud de geolocalización expiró.");
-      break;
     case error.UNKNOWN_ERROR:
       alert("Ocurrió un error desconocido.");
       break;
+  }
+}
+
+// Función para centrar el mapa en la ubicación actual del usuario
+function centerMapOnCurrentLocation() {
+  if (currentLat && currentLon) {
+    map.setView([currentLat, currentLon], 13);
+  } else {
+    alert("La ubicación actual no está disponible.");
   }
 }
 
