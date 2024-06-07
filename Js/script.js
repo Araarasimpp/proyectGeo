@@ -416,7 +416,7 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(() => {
           modal.classList.remove('activate-popup');
           modal.classList.remove('close-popup');
-          modal.style.left = '-100%'; // Reestablecer posición
+          modal.style.left = '-200%'; // Reestablecer posición
       }, 500); // Tiempo en ms correspondiente a la duración de la animación
   });
 });
