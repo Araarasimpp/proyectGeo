@@ -1,4 +1,3 @@
-/* CSS*/
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,600&display=swap');
 
 * {
@@ -162,7 +161,7 @@ body {
     overflow: hidden;
     transform: scale(0);
     transition: transform .5s ease, height .2s ease;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 .modal.activate-popup{
@@ -463,13 +462,164 @@ body {
     }
 
     .dropdown-menu {
+        position: absolute; /* Asegura que el menú se posicione correctamente */
+        max-height: 50vh; /* Establece una altura máxima para evitar desbordes */
+        overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
         margin: 10px 15px; /* Ajusta el margen */
         width: calc(100% - 50px); /* Ajusta el ancho */
         top: auto; /* Elimina la parte superior */
-        bottom: 30px; /* Coloca el menú desplegable encima del panel */
+        bottom: calc(100% - 140px); /* Coloca el menú abajo del input */
         border-bottom: 2px solid #000000; /* Establece solo el borde inferior */
         border-top: none; /* Oculta el borde superior */
         border-left: none; /* Oculta el borde izquierdo */
         border-right: none; /* Oculta el borde derecho */
+        z-index: 1001; /* Asegura que el menú esté por encima del panel */
     }
+}
+
+@media (max-width: 768px) {
+    .modal {
+        position: fixed; /* Fija el modal en la pantalla */
+        width: 100vw; /* Ocupa todo el ancho de la ventana */
+        height: 100vh; /* Ocupa toda la altura de la ventana */
+        top: 0; /* Posiciona en la parte superior */
+        left: -100%; /* Inicia fuera de la pantalla a la izquierda */
+        transform: none; /* Elimina la transformación existente */
+        transition: left 0.5s ease; /* Transición para el deslizamiento */
+        display: flex;
+        justify-content: center; /* Alinea los elementos al inicio */
+        border-radius: 0; /* Elimina el borde redondeado */
+        z-index: 1000; /* Coloca el modal por encima de otros elementos */
+        overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
+        z-index: 1002; /* Posiciona al frente todo el modal */
+    }
+
+    .modal.activate-popup {
+        left: 0; /* Mueve el modal hacia la pantalla */
+    }
+
+    .modal.activate{
+        position: fixed; /* Fija el modal en la pantalla */
+        width: 100vw; /* Ocupa todo el ancho de la ventana */
+        height: 100vh; /* Ocupa toda la altura de la ventana */
+        top: 0; /* Posiciona en la parte superior */
+        left: -100%; /* Inicia fuera de la pantalla a la izquierda */
+        transform: none; /* Elimina la transformación existente */
+        transition: left 0.5s ease; /* Transición para el deslizamiento */
+        display: flex;
+        justify-content: center; /* Alinea los elementos al inicio */
+        border-radius: 0; /* Elimina el borde redondeado */
+        z-index: 1000; /* Coloca el modal por encima de otros elementos */
+        overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
+        z-index: 1002; /* Posiciona al frente todo el modal */
+    }
+
+    .modal.close-popup {
+        animation: slideOutToLeft 0.5s ease-out forwards;
+    }
+
+    /* Ajustes adicionales para los elementos dentro del modal */
+    .modal .form-box {
+        width: 100%; /* Asegura que ocupe todo el ancho */
+        height: auto; /* Permite que la altura se ajuste según el contenido */
+        padding: 20px; /* Ajusta el padding */
+        display: flex;
+        flex-direction: column; /* Organiza los elementos en columna */
+        align-items: center; /* Centra los elementos horizontalmente */
+        justify-content: center; /* Centra los elementos verticalmente */
+    }
+
+    .modal .form-box.login {
+        width: 90%; /* Ajusta el ancho del formulario dentro del modal */
+        padding: 20px; /* Ajusta el padding */
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Centra el formulario horizontal y verticalmente */
+    }
+
+    /* Ajusta el icono de cierre */
+    .modal .close-icon {
+        width: 45px;
+        height: 45px;
+        top: 10px;
+        right: 10px;
+        font-size: 1.5em;
+        background: #3c91e6;
+        color: #fff;
+        border-bottom-left-radius: 50%;
+        z-index: 1;
+    }
+
+    /* Ajusta la caja de entrada */
+    .input-box {
+        width: 100%; /* Ajusta el ancho para que sea más pequeño que el contenedor */
+        height: 50px;
+        margin: 20px 0; /* Ajusta el margen */
+    }
+
+    .input-box input {
+        width: 90%; /* Asegura que el input ocupe todo el ancho */
+    }
+
+    .remember-forgot {
+        width: 90%;
+        margin: -10px 0 20px;
+        font-size: 0.9em;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn {
+        width: 100%; /* Ajusta el ancho del botón */
+        height: 45px;
+        margin: 20px 0; /* Ajusta el margen */
+    }
+
+    .login-register {
+        width: 100%;
+        margin: 20px 0;
+        text-align: center;
+        font-size: 0.9em;
+    }
+
+    .login-register p a {
+        color: #162938;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    
+    .login-register p a:hover{
+        text-decoration: underline;
+    }
+}
+
+/* Definir la animación de deslizamiento de derecha a izquierda */
+@keyframes slideInFromLeft {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 0;
+    }
+}
+
+/* Definir la animación de deslizamiento de izquierda a derecha */
+@keyframes slideOutToLeft {
+    from {
+        left: 0;
+    }
+    to {
+        left: -100%;
+    }
+}
+
+/* Aplicar la animación al activar el modal */
+.modal.activate-popup {
+    animation: slideInFromLeft 0.5s ease-out forwards;
+}
+
+/* Aplicar la animación al cerrar el modal */
+.modal.close-popup {
+    animation: slideOutToLeft 0.5s ease-out forwards;
 }
