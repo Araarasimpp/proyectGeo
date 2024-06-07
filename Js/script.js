@@ -37,8 +37,6 @@ function showPosition(position) {
     userMarker = L.marker([currentLat, currentLon], { icon: userIcon }).addTo(map);
   }
 
-  // Centrar el mapa en la nueva posición del usuario
-  map.setView([currentLat, currentLon], 13);
 }
 
 function showError(error) {
