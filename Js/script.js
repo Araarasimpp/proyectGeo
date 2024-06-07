@@ -3,6 +3,7 @@ var watchID;
 
 var currentLat = 0; // Variable global para almacenar la latitud
 var currentLon = 0; // Variable global para almacenar la longitud
+let mapCentered = false; // Variable de control para centrar el mapa solo una vez
 
 document.addEventListener("DOMContentLoaded", () => {
   getLocation();
@@ -37,6 +38,11 @@ function showPosition(position) {
     userMarker = L.marker([currentLat, currentLon], { icon: userIcon }).addTo(map);
   }
 
+  if (!mapCentered) {
+    // Centrar el mapa solo la primera vez
+    map.setView([currentLat, currentLon], 13);
+    mapCentered = true; // Marcar como centrado para evitar centrar de nuevo
+  }
 }
 
 function showError(error) {
