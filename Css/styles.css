@@ -424,7 +424,7 @@ body {
      /* Mover el panel a la parte inferior en dispositivos móviles */
      .panel {
         position: fixed; /* Fija el panel en la parte inferior */
-        top: auto; /* Elimina la parte superior */
+        top: 650px; /* Elimina la parte superior */
         bottom: 0; /* Mueve el panel al fondo */
         left: 0; /* Alinea a la izquierda */
         right: 0; /* Alínea a la derecha */
