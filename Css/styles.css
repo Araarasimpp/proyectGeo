@@ -468,7 +468,7 @@ body {
         margin: 10px 15px; /* Ajusta el margen */
         width: calc(100% - 50px); /* Ajusta el ancho */
         top: auto; /* Elimina la parte superior */
-        bottom: calc(100% - 140px); /* Coloca el menú encima del input */
+        bottom: calc(100% - 140px); /* Coloca el menú abajo del input */
         border-bottom: 2px solid #000000; /* Establece solo el borde inferior */
         border-top: none; /* Oculta el borde superior */
         border-left: none; /* Oculta el borde izquierdo */
@@ -582,7 +582,7 @@ body {
         text-align: center;
         font-size: 0.9em;
     }
-    
+
     .login-register p a {
         color: #162938;
         text-decoration: none;
