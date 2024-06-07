@@ -328,9 +328,9 @@ function showRoute(routeId) {
   routeId = routeId || parseInt(routeInput);
 
   if (routes[routeId] && allRouteCoordinates[routeId]) {
-    // Limpia las capas existentes en el mapa
+    // Limpia las capas existentes en el mapa, excepto la del usuario
     map.eachLayer(function (layer) {
-      if (!!layer.toGeoJSON) {
+      if (!!layer.toGeoJSON && layer !== userMarker) {
         map.removeLayer(layer);
       }
     });
@@ -358,10 +358,6 @@ function showRoute(routeId) {
   } else {
     alert('Ruta no encontrada');
   }
-    
-    // Muestra la ubicacion actual del usuario
-    getLocation();
-
 }
 
 // Función para filtrar las rutas y mostrar el menú desplegable
