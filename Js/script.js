@@ -112,7 +112,7 @@ document
     formData.append("email", document.getElementById("email").value);
     formData.append("password", document.getElementById("password").value);
 
-    fetch("php/login.php", {
+    fetch("https://pro-api-sig.vercel.app/api/login", {
       method: "POST",
       body: formData,
     })
@@ -149,7 +149,7 @@ document
     formData.append("email", document.getElementById("registerEmail").value);
     formData.append("password", document.getElementById("registerPassword").value);
   
-    fetch("php/register.php", {
+    fetch("https://pro-api-sig.vercel.app/api/register", {
       method: "POST",
       body: formData,
     })
