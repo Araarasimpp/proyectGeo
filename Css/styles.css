@@ -467,7 +467,7 @@ body {
         width: calc(100% - 50px); /* Ajusta el ancho */
         top: auto; /* Elimina la parte superior */
         bottom: 30px; /* Coloca el menú desplegable encima del panel */
-        border-bottom: 2px solid #202124; /* Establece solo el borde inferior */
+        border-bottom: 2px solid #000000; /* Establece solo el borde inferior */
         border-top: none; /* Oculta el borde superior */
         border-left: none; /* Oculta el borde izquierdo */
         border-right: none; /* Oculta el borde derecho */
