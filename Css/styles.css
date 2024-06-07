@@ -582,6 +582,16 @@ body {
         text-align: center;
         font-size: 0.9em;
     }
+    
+    .login-register p a {
+        color: #162938;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    
+    .login-register p a:hover{
+        text-decoration: underline;
+    }
 }
 
 /* Definir la animación de deslizamiento de derecha a izquierda */
