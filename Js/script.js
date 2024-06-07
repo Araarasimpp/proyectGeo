@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   getLocation();
 });
 
-
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -13,21 +12,6 @@ function getLocation() {
     alert("Geolocalización no es soportada por este navegador.");
   }
 }
-
-// Inicializar el mapa con una vista centrada por defecto
-var map = L.map("map", {
-  minZoom: 2,
-  maxBounds: [
-    [-90, -180],
-    [90, 180],
-  ],
-  zoomControl: false,
-}).setView([0, 0], 2);
-
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(map);
 
 function showPosition(position) {
   var lat = position.coords.latitude;
@@ -62,6 +46,21 @@ function showError(error) {
       break;
   }
 }
+
+// Inicializar el mapa con una vista centrada por defecto
+var map = L.map("map", {
+  minZoom: 2,
+  maxBounds: [
+    [-90, -180],
+    [90, 180],
+  ],
+  zoomControl: false,
+}).setView([0, 0], 2);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+}).addTo(map);
 
 // Login
 const modal = document.querySelector(".modal");
