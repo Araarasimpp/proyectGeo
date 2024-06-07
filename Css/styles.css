@@ -161,7 +161,7 @@ body {
     overflow: hidden;
     transform: scale(0);
     transition: transform .5s ease, height .2s ease;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 .modal.activate-popup{
@@ -487,17 +487,31 @@ body {
         transform: none; /* Elimina la transformación existente */
         transition: left 0.5s ease; /* Transición para el deslizamiento */
         display: flex;
-        flex-direction: column; /* Alinea los elementos en columna */
-        justify-content: flex-start; /* Alinea los elementos al inicio */
+        justify-content: center; /* Alinea los elementos al inicio */
         border-radius: 0; /* Elimina el borde redondeado */
         z-index: 1000; /* Coloca el modal por encima de otros elementos */
         overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
-        box-shadow: none; /* Elimina la sombra para que se vea uniforme */
-        z-index: 1002;
+        z-index: 1002; /* Posiciona al frente todo el modal */
     }
 
     .modal.activate-popup {
         left: 0; /* Mueve el modal hacia la pantalla */
+    }
+
+    .modal.activate{
+        position: fixed; /* Fija el modal en la pantalla */
+        width: 100vw; /* Ocupa todo el ancho de la ventana */
+        height: 100vh; /* Ocupa toda la altura de la ventana */
+        top: 0; /* Posiciona en la parte superior */
+        left: -100%; /* Inicia fuera de la pantalla a la izquierda */
+        transform: none; /* Elimina la transformación existente */
+        transition: left 0.5s ease; /* Transición para el deslizamiento */
+        display: flex;
+        justify-content: center; /* Alinea los elementos al inicio */
+        border-radius: 0; /* Elimina el borde redondeado */
+        z-index: 1000; /* Coloca el modal por encima de otros elementos */
+        overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
+        z-index: 1002; /* Posiciona al frente todo el modal */
     }
 
     .modal.close-popup {
@@ -536,7 +550,7 @@ body {
     }
 
     .input-box input {
-        width: 100%; /* Asegura que el input ocupe todo el ancho */
+        width: 90%; /* Asegura que el input ocupe todo el ancho */
     }
 
     .remember-forgot {
