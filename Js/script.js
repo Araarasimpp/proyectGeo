@@ -1,16 +1,66 @@
 var userMarker;
-getLocation();
+var watchID;
+
+var currentLat = 0; // Variable global para almacenar la latitud
+var currentLon = 0; // Variable global para almacenar la longitud
 
 document.addEventListener("DOMContentLoaded", () => {
   getLocation();
 });
 
-
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
+    // Inicia la observación de la posición del usuario
+    watchID = navigator.geolocation.watchPosition(showPosition, showError, {
+      enableHighAccuracy: true, // Usar la mayor precisión disponible
+      maximumAge: 0, // No utilizar posiciones guardadas en caché
+    });
   } else {
     alert("Geolocalización no es soportada por este navegador.");
+  }
+}
+
+function showPosition(position) {
+  currentLat = position.coords.latitude; // Almacena la latitud actual
+  currentLon = position.coords.longitude; // Almacena la longitud actual
+
+  var userIcon = L.divIcon({
+    className: "user-location-icon",
+    html: '<div class="outer-circle"><div class="inner-circle"></div></div>',
+  });
+
+  if (userMarker) {
+    // Actualizar la posición del marcador
+    userMarker.setLatLng([currentLat, currentLon]);
+  } else {
+    // Crear un nuevo marcador en la posición del usuario
+    userMarker = L.marker([currentLat, currentLon], { icon: userIcon }).addTo(map);
+  }
+
+  // Centrar el mapa en la nueva posición del usuario
+  map.setView([currentLat, currentLon], 13);
+}
+
+function showError(error) {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      alert("El usuario denegó la solicitud de geolocalización.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      alert("La información de ubicación no está disponible.");
+      break;
+    case error.UNKNOWN_ERROR:
+      alert("Ocurrió un error desconocido.");
+      break;
+  }
+}
+
+// Función para centrar el mapa en la ubicación actual del usuario
+function centerMapOnCurrentLocation() {
+  if (currentLat && currentLon) {
+    map.setView([currentLat, currentLon], 13);
+  } else {
+    alert("La ubicación actual no está disponible.");
   }
 }
 
@@ -28,40 +78,6 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
-
-function showPosition(position) {
-  var lat = position.coords.latitude;
-  var lon = position.coords.longitude;
-  var userIcon = L.divIcon({
-    className: "user-location-icon",
-    html: '<div class="outer-circle"><div class="inner-circle"></div></div>',
-  });
-
-  if (userMarker) {
-    map.removeLayer(userMarker);
-  }
-
-  userMarker = L.marker([lat, lon], { icon: userIcon }).addTo(map);
-  userMarker.openPopup();
-  map.setView([lat, lon], 13);
-}
-
-function showError(error) {
-  switch (error.code) {
-    case error.PERMISSION_DENIED:
-      alert("El usuario denegó la solicitud de geolocalización.");
-      break;
-    case error.POSITION_UNAVAILABLE:
-      alert("La información de ubicación no está disponible.");
-      break;
-    case error.TIMEOUT:
-      alert("La solicitud de geolocalización expiró.");
-      break;
-    case error.UNKNOWN_ERROR:
-      alert("Ocurrió un error desconocido.");
-      break;
-  }
-}
 
 // Login
 const modal = document.querySelector(".modal");
@@ -96,7 +112,7 @@ document
     formData.append("email", document.getElementById("email").value);
     formData.append("password", document.getElementById("password").value);
 
-    fetch("php/login.php", {
+    fetch("https://pro-api-sig.vercel.app/api/login", {
       method: "POST",
       body: formData,
     })
@@ -133,7 +149,7 @@ document
     formData.append("email", document.getElementById("registerEmail").value);
     formData.append("password", document.getElementById("registerPassword").value);
   
-    fetch("php/register.php", {
+    fetch("https://pro-api-sig.vercel.app/api/register", {
       method: "POST",
       body: formData,
     })
@@ -312,9 +328,9 @@ function showRoute(routeId) {
   routeId = routeId || parseInt(routeInput);
 
   if (routes[routeId] && allRouteCoordinates[routeId]) {
-    // Limpia las capas existentes en el mapa
+    // Limpia las capas existentes en el mapa, excepto la del usuario
     map.eachLayer(function (layer) {
-      if (!!layer.toGeoJSON) {
+      if (!!layer.toGeoJSON && layer !== userMarker) {
         map.removeLayer(layer);
       }
     });
@@ -342,10 +358,6 @@ function showRoute(routeId) {
   } else {
     alert('Ruta no encontrada');
   }
-    
-    // Muestra la ubicacion actual del usuario
-    getLocation();
-
 }
 
 // Función para filtrar las rutas y mostrar el menú desplegable
