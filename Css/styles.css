@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 * {
     margin: 0;
@@ -432,7 +432,6 @@ body {
         border-top-left-radius: 1em;
         border-top-right-radius: 1em;
         padding: 0; /* Ajusta el padding */
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); /* Sombra en la parte superior */
     }
     
     .hamburger-menu{
@@ -483,7 +482,7 @@ body {
         width: 100vw; /* Ocupa todo el ancho de la ventana */
         height: 100vh; /* Ocupa toda la altura de la ventana */
         top: 0; /* Posiciona en la parte superior */
-        left: -100%; /* Inicia fuera de la pantalla a la izquierda */
+        left: -200%; /* Inicia fuera de la pantalla a la izquierda */
         transform: none; /* Elimina la transformación existente */
         transition: left 0.5s ease; /* Transición para el deslizamiento */
         display: flex;

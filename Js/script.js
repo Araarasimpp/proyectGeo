@@ -661,13 +661,18 @@ document.addEventListener("DOMContentLoaded", function () {
   closeIcon.addEventListener("click", function () {
     // Añadir la clase close-popup para activar la animación
     modal.classList.add("close-popup");
-
     // Esperar hasta que la animación termine antes de quitar el modal de la pantalla
     setTimeout(() => {
       modal.classList.remove("activate-popup");
       modal.classList.remove("close-popup");
       modal.style.left = "-100%"; // Reestablecer posición
     }, 500); // Tiempo en ms correspondiente a la duración de la animación
+      // Esperar hasta que la animación termine antes de quitar el modal de la pantalla
+      setTimeout(() => {
+          modal.classList.remove('activate-popup');
+          modal.classList.remove('close-popup');
+          modal.style.left = '-200%'; // Reestablecer posición
+      }, 500); // Tiempo en ms correspndiente a la duración de la animación
   });
 });
 
