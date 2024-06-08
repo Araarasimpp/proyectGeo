@@ -1,8 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
+    error_log("User ID not set in session");
     header("Location: ../index.html");
     exit();
+} else {
+    error_log("User ID: " . $_SESSION['user_id']);
 }
 ?>
 
