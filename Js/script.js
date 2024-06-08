@@ -123,7 +123,7 @@ document
     formData.append("email", data.email);
     formData.append("password", data.password);
 
-    fetch("http://localhost:8000/api/login", {
+    fetch("https://apiprosig-production.up.railway.app/api/login", {
       method: "POST",
       body: formData,
       credentials: "include"
@@ -157,7 +157,7 @@ document
       document.getElementById("registerPassword").value
     );
 
-    fetch("http://localhost:8000/api/users", {
+    fetch("https://apiprosig-production.up.railway.app/api/users", {
       method: "POST",
       body: formData,
     })
