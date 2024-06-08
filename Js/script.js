@@ -126,6 +126,7 @@ document
     fetch("http://localhost:8000/api/login", {
       method: "POST",
       body: formData,
+      credentials: "include"
     })
       .then((response) => {
         if (response.ok) {
