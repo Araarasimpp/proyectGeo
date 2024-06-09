@@ -131,7 +131,7 @@ document
       .then((response) => {
         if (response.ok) {
           alert("Inicio de exitoso");
-          window.location.href = "https://apiprosig-production.up.railway.app/php/pagina_conductor.php";
+          window.location.href = "php/pagina_conductor.php";
         } else {
           throw new Error("Network response was not ok " + response.statusText);
         }
