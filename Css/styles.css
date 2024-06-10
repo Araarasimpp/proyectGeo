@@ -116,15 +116,6 @@ body {
     vertical-align: middle; /* Alinea verticalmente el icono */
 }
 
-.subicon {
-    width: 20px; /* Ajusta el tamaño del icono según sea necesario */
-    height: 20px;
-    line-height: 1;
-    padding: 20px 20px;
-    display: inline-block; /* Hace que el icono no tenga una caja */
-    vertical-align: middle; /* Alinea verticalmente el icono */
-}
-
 /* Estilo para la clase loginButton */
 .btnLogin-popup {
     position: fixed;

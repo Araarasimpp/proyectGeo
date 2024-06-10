@@ -93,8 +93,12 @@
           <ion-icon onclick="showRoute()" name="search"></ion-icon>
         </span>
         <input id="routeInput" placeholder="Buscar ruta:" onkeyup="filterRoutes()" onkeydown="handleEnter(event)" autocomplete="off"/>
-        <ul id="dropdownMenu" class="dropdown-menu"></ul>
+        
+        <ul id="dropdownMenu" class="dropdown-menu">
+        </ul>
+        
       </div>
+      
     </div>
     <button class="btnLogin-popup">¿Eres conductor?</button>
     <button class="ubiButton" onclick="centerMapOnCurrentLocation()">

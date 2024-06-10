@@ -178,7 +178,7 @@ document
 
 // Coordenadas de la ruta (obtenidas manualmente de Google Maps)
 var allRouteCoordinates = {
-  1: [
+  "Ruta 1 Sur - Norte": [
     [3.324761, -76.53401],
     [3.325626, -76.533704],
     [3.326231, -76.533484],
@@ -338,7 +338,7 @@ var allRouteCoordinates = {
     [3.492536, -76.485826],
     [3.492779, -76.484902],
   ],
-  2: [
+  "Ruta 1 Norte - Sur": [
     [3.493422, -76.500783],
     [3.493896, -76.500397],
     [3.49512, -76.50158],
@@ -538,7 +538,7 @@ var allRouteCoordinates = {
 
 // Lista de puntos de referencia con sus coordenadas
 var routes = {
-  1: [
+  "Ruta 1 Sur - Norte": [
     { name: "CAÑAS GORDAS", coords: [3.324761, -76.53401] },
     { name: "ICESI", coords: [3.341837, -76.530986] },
     { name: "JAVERIANA", coords: [3.348674, -76.530412] },
@@ -559,8 +559,33 @@ var routes = {
     { name: "CL 82NTE", coords: [3.493521, -76.486372] },
   ],
 
-  2: [],
+  "Ruta 1 Norte - Sur": [
+    { name: "MENGA", coords: [3.489706, -76.507705] },
+    { name: "CL 70 ENTRE KR 1 Y 1A5", coords: [3.485134, -76.493313] },
+    { name: "Cl 70 entre Kr 1C1 y 1D", coords: [3.476652, -76.488313] },
+    { name: "Kr 2 entre Cl 49 y 47", coords: [3.467683, -76.503650] },
+    { name: "Cl 44 entre Kr 2N y 3AN", coords: [3.470998, -76.510677] },
+    { name: "Cl 34 entre Av 2B y 2F", coords: [3.470280, -76.519824] },
+    { name: "Cl 25 entre Av 2DN y 2CN", coords: [3.463844, -76.522361] },
+    { name: "Av 1N entre Cl 17 y 15", coords: [3.457906, -76.530456] },
+    { name: "Cl 10 entre Kr 10 ", coords: [3.446698, -76.532564] },
+    { name: "Cl 13 entre Kr 20 y 21", coords: [3.438334, -76.528407] },
+    { name: "Cl 14 entre Kr 31 y 32", coords: [3.426120, -76.527806] },
+    { name: "Cl 14 entre Kr 42Bs y 43", coords: [3.415255, -76.528246] },
+    { name: "Cl 13 entre Kr 67 y 68", coords: [3.396277, -76.538165] },
+    { name: "Cl 13 con Kr 83 / Parque del Ingenio", coords: [3.382150, -76.538154] },
+    { name: "Kr 86 entre Cl 14 y 16 Univalle", coords: [3.379826, -76.532559] },
+    { name: "JARDIN PLAZA", coords: [3.370075, -76.529619] },
+    { name: "JAVERIANA", coords: [3.348172, -76.530579] },
+    { name: "ICESI", coords: [3.341301, -76.531110] },
+  ],
 };
+
+map.on('click', function(e) {
+  var lat = e.latlng.lat.toFixed(6);
+  var lng = e.latlng.lng.toFixed(6);
+  alert('Coordenadas: ' + lat + ', ' + lng);
+});
 
 // Crear ícono personalizado
 var customIcon = L.icon({
@@ -568,25 +593,28 @@ var customIcon = L.icon({
   iconSize: [80, 80], // Tamaño del ícono
   popupAnchor: [1, -34], // Punto desde el cual se abrirá el popup relativo al icono
 });
-
+  
 // Función para mostrar la ruta y los puntos de referencia
 function showRoute(routeId) {
   var routeInput = document.getElementById("routeInput").value;
-  routeId = routeId || parseInt(routeInput);
+  routeId = routeId || routeInput;
+
+  // Convertir routeId a cadena para asegurar que se compara correctamente con las claves de texto
+  routeId = routeId.toString();
 
   if (routes[routeId] && allRouteCoordinates[routeId]) {
-    // Limpia las capas existentes en el mapa, excepto la del usuario
+    // Limpia las capas existentes en el mapa, excepto la capa base y el marcador del usuario
     map.eachLayer(function (layer) {
-      if (!!layer.toGeoJSON && layer !== userMarker) {
+      if (layer !== userMarker && layer !== map._baseLayer) {
         map.removeLayer(layer);
       }
     });
 
     // Añadir capa de mapa base nuevamente
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
 
     // Añadir la línea de la ruta al mapa con estilo discontínuo
     var polyline = L.polyline(allRouteCoordinates[routeId], {
@@ -620,14 +648,14 @@ function filterRoutes() {
   var dropdownMenu = document.getElementById("dropdownMenu");
   dropdownMenu.innerHTML = ""; // Limpiar el menú
 
-  // Filtrar rutas
+  // Filtrar rutas por coincidencia de texto
   for (var routeId in routes) {
-    if (routeId.startsWith(input)) {
+    if (routeId.toLowerCase().includes(input)) {
       var li = document.createElement("li");
-      li.textContent = "" + routeId;
+      li.textContent = routeId;
       li.onclick = (function (routeIdCopy) {
         return function () {
-          document.getElementById("routeInput").value = "" + routeIdCopy; // Completa el valor del input con la ruta seleccionada
+          document.getElementById("routeInput").value = routeIdCopy; // Completa el valor del input con la ruta seleccionada
           showRoute(routeIdCopy);
           dropdownMenu.style.display = "none";
         };
@@ -635,7 +663,8 @@ function filterRoutes() {
       dropdownMenu.appendChild(li);
     }
   }
-
+                     
+  
   // Mostrar u ocultar el menú desplegable
   if (input === "") {
     dropdownMenu.style.display = "none";
